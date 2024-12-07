@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: #061224; /* Deep blue background */
+  color: #ff0000; /* Red text */
+  min-width: 300px;
+  margin-bottom: 200px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.no-scrollbar::-webkit-scrollbar-track {
+  background: #061224; /* Deep blue scrollbar track */
+  border-radius: 9999px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  border: solid 1px #ff0000; /* Red border for scrollbar thumb */
+  background-color: #3b82f6; /* Light blue thumb */
+  border-radius: 9999px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ff0000; /* Red on hover */
+}
+
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke: 2px #ff0000; /* Red stroke */
+  -webkit-text-fill-color: transparent;
+}
+
+swiper-slide {
+  height: auto;
+}
+
+/* Links and Buttons */
+a {
+  color: #3b82f6; /* Blue links */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ff0000; /* Red on hover */
+}
+
+button {
+  background-color: #3b82f6; /* Blue button background */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff0000; /* Red button background on hover */
+}
+
+/* Titles and Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #ff0000; /* Red for headings */
+}
+

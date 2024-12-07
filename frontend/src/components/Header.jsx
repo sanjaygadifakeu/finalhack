@@ -56,28 +56,28 @@ const Header = () => {
       <div className="flex items-center px-1 z-[1]">
         <Link to="/dashboard" className=" no-underline ">
           <h1 className="text-3xl font-bold text-white font-Roboto">
-            <span className="uppercase text-theme-color">B</span>id
-            <span className="uppercase text-theme-color">F</span>air
+            <span className=" text-black">BidYourLuck</span>
+            
           </h1>
         </Link>
       </div>
       <div className="hidden sm:block">
         <Link
           to="/"
-          className="text-white font-Roboto text-lg mx-3 hover:text-color-primary transition-all "
+          className="text-black font-Roboto text-lg mx-3 hover:text-color-primary transition-all "
         >
           Home
         </Link>
 
         <Link
           to="/contact-us"
-          className="text-white font-Roboto text-lg mx-3 hover:text-color-primary transition-all"
+          className="text-black font-Roboto text-lg mx-3 hover:text-color-primary transition-all"
         >
           Contact
         </Link>
         <Link
           to="/about-us"
-          className="text-white font-Roboto text-lg mx-3 hover:text-color-primary transition-all"
+          className="text-black font-Roboto text-lg mx-3 hover:text-color-primary transition-all"
         >
           About
         </Link>
@@ -144,7 +144,7 @@ const Header = () => {
           <nav className="pt-2 [&_a]:transition-all [&_a]:duration-100">
             <Link
               to="/user-profile/profile"
-              className="block no-underline text-white font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
+              className="block no-underline text-black font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
               onClick={() => setSidebarOpen(false)}
             >
               Profile
@@ -155,7 +155,7 @@ const Header = () => {
                   ? "/user-profile/manage-items"
                   : "/user-profile/bids-items"
               }
-              className="block no-underline text-white font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
+              className="block no-underline text-black font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
               onClick={() => setSidebarOpen(false)}
             >
               {user.userType === "seller" ? "Manage Items" : "Bids Items"}
@@ -163,7 +163,7 @@ const Header = () => {
 
             <Link
               to="/user-profile/account-settings"
-              className="block no-underline text-white font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
+              className="block no-underline text-black font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
               onClick={() => setSidebarOpen(false)}
             >
               Account Setting
@@ -173,7 +173,7 @@ const Header = () => {
                 logoutHandle();
                 setSidebarOpen(false);
               }}
-              className="block no-underline text-white font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
+              className="block no-underline text-black font-Roboto text-lg py-2 px-7 hover:bg-theme-bg-light"
             >
               Logout
             </Link>

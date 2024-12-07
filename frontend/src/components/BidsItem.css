@@ -1,0 +1,73 @@
+/* Card styling */
+.bg-theme-bg2 {
+    background-color: #007BFF; /* Set a blue background for the card */
+    color: #FFFFFF; /* White text inside the card */
+  }
+  
+  /* Hover effect for the card */
+  .bg-theme-bg2:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+  }
+  
+  /* Text inside the card */
+  .bg-theme-bg2 h3,
+  .bg-theme-bg2 p {
+    color: #FFFFFF; /* Ensures all text in the card is white */
+  }
+  
+  /* Link inside the card */
+  .bg-theme-bg2 a {
+    color: #FFFFFF; /* White color for the link */
+    border-color: #FFFFFF; /* White border for the link button */
+  }
+  
+  .bg-theme-bg2 a:hover {
+    background-color: #0056b3; /* Change background on hover for the link */
+    color: #FFFFFF; /* Ensure the link stays white */
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #10B981; /* Static green background for buttons */
+    color: #000000; /* White text */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: none; /* No transition needed */
+  }
+  
+  button:active {
+    background-color: #10B981; /* Keep the green color when clicked */
+  }
+  
+  button:hover {
+    background-color: #10B981; /* No hover effect on the button */
+  }
+  
+  /* Ensure all text, including inside links, is black */
+  a {
+    color: #000000; /* Black text for links */
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #000000; /* No color change on hover */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #000000; /* Black for headings */
+  }
+  
+  /* Placeholder style for inputs to ensure black text */
+  input::placeholder {
+    color: #000000; /* Ensure placeholder text is black */
+  }
+  
+  input {
+    color: #000000; /* Ensure input text is black */
+  }
+  
+  textarea {
+    color: #000000; /* Ensure textarea text is black */
+  }
+  

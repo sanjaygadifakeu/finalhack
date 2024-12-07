@@ -1,115 +1,146 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect,useState } from "react";
-import { getBidsAuctionsByUser } from "../store/bid/bidSlice";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link
 import { FaEye } from "react-icons/fa";
-import Loading from "./Loading";
-import Pagination from "./Pagination";
+import "./BidsItem.css"; // Ensure this CSS is correctly set up
+
+// Dummy card component to display added items
+const BidCard = ({ bid }) => {
+  return (
+    <div className="bg-theme-bg2 p-4 rounded-lg mb-4 shadow-lg">
+      <h3 className="font-bold">{bid.product}</h3>
+      <p><strong>Category:</strong> {bid.category}</p>
+      <p><strong>Status:</strong> {bid.status}</p>
+      <p><strong>Bid:</strong> ${bid.bid}</p>
+      <p><strong>Your Bid:</strong> ${bid.yourBid}</p>
+      <Link
+        className="text-theme-color hover:text-white hover:bg-theme-color rounded-lg border-2 border-theme-color p-2 transition-all"
+        to={`/single-auction-detail/${bid.id}`} // Corrected template string
+      >
+        <FaEye size={24} />
+      </Link>
+    </div>
+  );
+};
 
 const BidsItem = () => {
-  const dispatch = useDispatch();
-  const { bids , isLoading} = useSelector((state) => state.bid);
-  const {user}=useSelector(state=>state.auth)
-  //console.log(bids, "bids....");
-  useEffect(() => {
-    dispatch(getBidsAuctionsByUser());
-    //console.log("use effecty bids....", bids);
-  }, []);
+  const [product, setProduct] = useState("");
+  const [category, setCategory] = useState("");
+  const [status, setStatus] = useState("");
+  const [bid, setBid] = useState("");
+  const [yourBid, setYourBid] = useState("");
 
+  const [bids, setBids] = useState([]);
 
-  //pagination part
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setitemsPerPage] = useState(6)
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = bids?.slice(indexOfFirstItem, indexOfLastItem);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "product") setProduct(value);
+    if (name === "category") setCategory(value);
+    if (name === "status") setStatus(value);
+    if (name === "bid") setBid(value);
+    if (name === "yourBid") setYourBid(value);
+  };
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
-  const prevPage = () => {
-    setCurrentPage(currentPage-1)
-  }
-  const nextPage = () => {
-    setCurrentPage(currentPage+1)
-  }
+  const handleAddItem = () => {
+    if (
+      !product ||
+      !category ||
+      !status ||
+      isNaN(bid) ||
+      isNaN(yourBid) ||
+      bid <= 0 ||
+      yourBid <= 0
+    ) {
+      alert("Please fill in all fields with valid data.");
+      return;
+    }
+
+    const newBid = {
+      id: Date.now(),
+      product,
+      category,
+      status,
+      bid: parseFloat(bid),
+      yourBid: parseFloat(yourBid),
+    };
+
+    setBids((prevBids) => [...prevBids, newBid]);
+
+    setProduct("");
+    setCategory("");
+    setStatus("");
+    setBid("");
+    setYourBid("");
+  };
 
   return (
-    <div className="overflow-auto px-7 py-4 w-full bg-theme-bg text-white rounded-2xl ">
-      <h2 className="  text-white font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
-        Bids Items
+    <div className="overflow-auto px-7 py-4 w-full bg-theme-bg text-white rounded-2xl">
+      <h2 className="text-black font-bold text-xl border-b border-border-info-color pb-3 mb-5">
+        Add Bids Item
       </h2>
-      <div className="overflow-auto no-scrollbar px-4 bg-theme-bg2 rounded-2xl  max-h-[750px] border border-border-info-color  ">
-        <table className="relative text-left whitespace-nowrap w-full border-separate border-spacing-x-0 border-spacing-y-4 ">
-          <thead className="sticky top-0 table-header-group">
-            <tr className="capitalize table-row bg-theme-color [&_th]:table-cell [&_th]:pl-5 [&_th]:pr-3 [&_th]:py-3">
-              <th className=" rounded-l-lg ">Product</th>
-              <th>Catagory</th>
-              <th>Status</th>
-              <th>Bid</th>
-              <th>Your Bid</th>
 
-              <th className=" rounded-r-lg">Action</th>
+      <div className="bg-theme-bg2 rounded-2xl max-h-[750px] p-6 border border-border-info-color">
+        {/* Form for adding new bid */}
+        <div className="mb-6">
+          <div className="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              name="product"
+              value={product}
+              onChange={handleInputChange}
+              placeholder="Product"
+              className="p-3 bg-theme-bg border rounded"
+            />
+            <input
+              type="text"
+              name="category"
+              value={category}
+              onChange={handleInputChange}
+              placeholder="Category"
+              className="p-3 bg-theme-bg border rounded"
+            />
+            <input
+              type="text"
+              name="status"
+              value={status}
+              onChange={handleInputChange}
+              placeholder="Status"
+              className="p-3 bg-theme-bg border rounded"
+            />
+            <input
+              type="number"
+              name="bid"
+              value={bid}
+              onChange={handleInputChange}
+              placeholder="Bid"
+              className="p-3 bg-theme-bg border rounded"
+            />
+            <input
+              type="number"
+              name="yourBid"
+              value={yourBid}
+              onChange={handleInputChange}
+              placeholder="Your Bid"
+              className="p-3 bg-theme-bg border rounded"
+            />
+          </div>
 
-            </tr>
-          </thead>
-          <tbody className="table-row-group">
-            {isLoading ?<tr>
-                <td colSpan="7" className="text-center">
-                  <Loading width="sidebar"/>
-                </td>
-              </tr> : bids?.length ===0 ? <tr className="table-row bg-theme-bg ">
-                <td colSpan="7" className="text-center m-2 w-full p-10 h-[400px]">No Bids Made Yet.</td>
-              </tr> :currentItems?.map((bid) => (
-              <tr
-                className="table-row bg-theme-bg [&_td]:table-cell [&_td]:pl-5 [&_td]:pr-3 [&_td]:py-3"
-                key={bid?._id}
-              >
-                <td className="rounded-l-lg">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={bid?.auction?.image}
-                      alt="auction image"
-                      className="w-[50px] h-[50px] rounded-full"
-                    />
-                    <span className="pr-10">{bid?.auction?.name}</span>
-                  </div>
-                </td>
-                <td>
-                  <span>{bid?.auction?.category?.name}</span>
-                </td>
-                <td className="capitalize">
-                  <span className="px-3 py-1 rounded-full text-sm border bg-theme-bg2 border-border-info-color">
-                    {bid?.auction?.status}
-                  </span>
-                </td>
-                <td>
-                  <span>{bid?.auction?.startingPrice}</span>
-                </td>
-                <td>
-                  <span>{bid?.bidAmount}</span>
-                </td>
-                
-                <td className="capitalize rounded-r-lg flex justify-center items-center">
-                  <Link
-                    className="text-theme-color hover:text-white hover:bg-theme-color rounded-lg border-2 border-theme-color p-2  transition-all"
-                    to={`/single-auction-detail/${bid?.auction?._id}`}
-                  >
-                    <FaEye size={24} className="inline mt-[-2px]" />
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        { bids?.length ===0 ? <></> :<Pagination totalPosts={bids?.length} postsPerPage={itemsPerPage} 
-        paginate={paginate}
-        currentPage={currentPage}
-        nextPage={nextPage}
-        prevPage={prevPage}
-        />}
+          <button
+            onClick={handleAddItem}
+            className="mt-4 w-full bg-theme-color text-white p-3 rounded-lg"
+          >
+            Add Item
+          </button>
+        </div>
+
+        {/* Display added bids as cards */}
+        <div className="mt-6">
+          {bids.length === 0 ? (
+            <p>No bids added yet.</p>
+          ) : (
+            bids.map((bid) => <BidCard key={bid.id} bid={bid} />)
+          )}
+        </div>
       </div>
-      
     </div>
   );
 };

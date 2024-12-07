@@ -124,7 +124,7 @@ const CheckoutForm = () => {
 
   return (
     <div className=" px-7 pt-4 pb-10 w-full bg-theme-bg  rounded-2xl ">
-      <h1 className=" text-white font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">Payment Method</h1>
+      <h1 className=" text-black font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">Payment Method</h1>
       <form
         onSubmit={handleSubmit}
         className="flex flex-col lg:w-[450px] gap-3 inputs:outline-none inputs:px-2 inputs:py-[10px] inputs:rounded-md inputs:white [&_button[type=submit]]:bg-theme-color [&_button:hover[type=submit]]:bg-color-danger inputs:border inputs:border-border-info-color focus:inputs:border-theme-color select:border select:border-border-info-color inputs:placeholder-body-text-color inputs:text-sm [&_*]:transition-all "

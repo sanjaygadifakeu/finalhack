@@ -1,156 +1,164 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect ,useState} from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  deleteSingleAuctionById,
-  getSellerAuction,
-  reset,
-} from "../store/auction/auctionSlice";
 import { FaEye } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { toast } from "react-toastify";
-import Loading from "./Loading"
 import Pagination from "./Pagination";
+
 const ManageItems = () => {
-  const dispatch = useDispatch();
-  const { sellerAuction, isLoading } = useSelector((state) => state.auction);
+  const [mockAuctions, setMockAuctions] = useState([
+    {
+      _id: "1",
+      name: "Samsung Smart TV",
+      category: { name: "Electronics" },
+      bids: [{ bid: 550 }, { bid: 600 }, { bid: 650 }],
+      status: "active",
+      startingPrice: 500,
+      winner: { bidder: { fullName: "John Doe" } },
+      image: "https://via.placeholder.com/50?text=TV",
+    },
+    {
+      _id: "2",
+      name: "Gold Necklace",
+      category: { name: "Jewelry" },
+      bids: [{ bid: 1500 }, { bid: 1800 }, { bid: 2000 }],
+      status: "active",
+      startingPrice: 1400,
+      winner: { bidder: { fullName: "Sarah Smith" } },
+      image: "https://via.placeholder.com/50?text=Necklace",
+    },
+    {
+      _id: "3",
+      name: "Toyota Corolla",
+      category: { name: "Automobile" },
+      bids: [{ bid: 18000 }, { bid: 20000 }],
+      status: "upcoming",
+      startingPrice: 17000,
+      winner: null,
+      image: "https://via.placeholder.com/50?text=Car",
+    },
+    {
+      _id: "4",
+      name: "Signed Cricket Bat",
+      category: { name: "Sports" },
+      bids: [{ bid: 400 }, { bid: 450 }, { bid: 500 }],
+      status: "active",
+      startingPrice: 350,
+      winner: { bidder: { fullName: "Chris Lee" } },
+      image: "https://via.placeholder.com/50?text=Bat",
+    },
+    {
+      _id: "5",
+      name: "Luxury Watch",
+      category: { name: "Accessories" },
+      bids: [{ bid: 900 }, { bid: 1000 }],
+      status: "active",
+      startingPrice: 850,
+      winner: { bidder: { fullName: "Alex Taylor" } },
+      image: "https://via.placeholder.com/50?text=Watch",
+    },
+  ]);
 
-  // componentDidMount and component
-  useEffect(() => {
-    dispatch(getSellerAuction());
-  }, [dispatch]);
-  //console.log(sellerAuction, "sellerAuction....");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
 
-  const handleDeleteAuction = async (id) => {
-    //console.log(id, "delete id....");
-    await dispatch(deleteSingleAuctionById(id)).then(() => {
-      toast.success("item deleted.", {
-        autoClose: 500,
-      });
-    });
-    dispatch(getSellerAuction());
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = mockAuctions.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const nextPage = () =>
+    setCurrentPage((prev) =>
+      Math.min(prev + 1, Math.ceil(mockAuctions.length / itemsPerPage))
+    );
+
+  const handleDeleteAuction = (id) => {
+    setMockAuctions((prevAuctions) =>
+      prevAuctions.filter((auction) => auction._id !== id)
+    );
+    toast.success("Item deleted.", { autoClose: 500 });
   };
 
-   //pagination part
-   const [currentPage, setCurrentPage] = useState(1)
-   const [itemsPerPage, setitemsPerPage] = useState(6)
-   const indexOfLastItem = currentPage * itemsPerPage;
-   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-   const currentItems = sellerAuction?.auctions?.slice(indexOfFirstItem, indexOfLastItem);
- 
-   const paginate = (pageNumber) => {
-     setCurrentPage(pageNumber)
-   }
-   const prevPage = () => {
-     setCurrentPage(currentPage-1)
-   }
-   const nextPage = () => {
-     setCurrentPage(currentPage+1)
-   }
-
   return (
-    <div className=" overflow-auto px-7 py-4 w-full bg-theme-bg text-white rounded-2xl ">
-      <h2 className=" text-white font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
+    <div className="overflow-auto px-7 py-4 w-full bg-gradient-to-r from-dark-blue to-light-blue text-white rounded-2xl shadow-lg">
+      <h2 className="text-white font-bold text-xl border-b-2 border-blue-300 pb-3 mb-5">
         Manage Items
       </h2>
-      <div className=" overflow-auto px-4 bg-theme-bg2 rounded-2xl  border border-border-info-color">
-        <table className="text-left whitespace-nowrap w-full border-separate border-spacing-x-0 border-spacing-y-4">
-          <thead className="table-header-group ">
-            <tr className="table-row bg-theme-color [&_th]:table-cell [&_th]:pl-5 [&_th]:pr-3 [&_th]:py-3">
-              <th className="rounded-l-lg ">Product</th>
-              <th>Catagory</th>
-              <th>Bids</th>
-              <th>Status</th>
-              <th>Your Bid</th>
-              <th>Winner</th>
-
-              <th className="rounded-r-lg">Action</th>
+      <div className="overflow-auto px-4 bg-blue-900 rounded-2xl border border-blue-400 shadow-md">
+        <table className="text-left w-full border-collapse border-spacing-y-4">
+          <thead>
+            <tr className="bg-gradient-to-r from-blue-800 to-blue-600 text-white">
+              <th className="px-5 py-3 rounded-l-lg">Product</th>
+              <th className="px-5 py-3">Category</th>
+              <th className="px-5 py-3">Bids</th>
+              <th className="px-5 py-3">Status</th>
+              <th className="px-5 py-3">Your Bid</th>
+              <th className="px-5 py-3">Winner</th>
+              <th className="px-5 py-3 rounded-r-lg">Action</th>
             </tr>
           </thead>
-          
-          <tbody className="table-row-group">
-            {sellerAuction?.auctions?.length === 0 ? (
-              <tr className="table-row bg-theme-bg ">
-                <td colSpan="7" className="text-center m-2 w-full p-10 h-[400px]">No Item</td>
-              </tr>
-            ) : (
-              isLoading ? <tr>
-                <td colSpan="7" className="text-center">
-                  <Loading width="sidebar"/>
+          <tbody>
+            {currentItems.map((auction) => (
+              <tr
+                key={auction._id}
+                className="bg-blue-700 text-white hover:bg-blue-600 transition-all"
+              >
+                <td className="px-5 py-3 flex items-center gap-2">
+                  <img
+                    src={auction.image}
+                    alt="auction"
+                    className="w-[50px] h-[50px] rounded-full border-2 border-blue-400"
+                  />
+                  {auction.name}
                 </td>
-              </tr> : currentItems?.map((auction) => (
-                <tr
-                  key={auction?._id}
-                  className="table-row bg-theme-bg [&_td]:table-cell [&_td]:pl-5 [&_td]:pr-3 [&_td]:py-3"
-                >
-                  <td className="rounded-l-lg">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={auction?.image}
-                        alt="auction image"
-                        className="w-[50px] h-[50px] rounded-full"
-                      />
-                      <span className="pr-10">{auction?.name}</span>
-                    </div>
-                  </td>
-                  <td>
-                    <span>{auction?.category?.name || "---"}</span>
-                  </td>
-                  <td>
-                    <span>{auction?.bids?.length}</span>
-                  </td>
-                  <td className="capitalize">
-                    <span className="px-3 py-1 rounded-full text-sm border bg-theme-bg2 border-border-info-color">
-                      {auction?.status}
-                    </span>
-                  </td>
-                  <td>
-                    <span>{auction?.startingPrice}</span>
-                  </td>
-                  <td>
-                    <span>{auction?.winner?.bidder?.fullName || "----"}</span>
-                  </td>
-                  <td className="link:mr-2 capitalize rounded-r-lg">
+                <td className="px-5 py-3">{auction.category.name}</td>
+                <td className="px-5 py-3">{auction.bids.length}</td>
+                <td className="px-5 py-3">
+                  <span className="px-3 py-1 rounded-full bg-blue-500 border border-blue-300">
+                    {auction.status}
+                  </span>
+                </td>
+                <td className="px-5 py-3">{auction.startingPrice}</td>
+                <td className="px-5 py-3">
+                  {auction.winner?.bidder?.fullName || "----"}
+                </td>
+                <td className="px-5 py-3 flex gap-2">
+                  <Link
+                    className="text-blue-300 hover:text-white hover:bg-blue-500 px-2 py-1 rounded-lg transition"
+                    to={`/single-auction-detail/${auction._id}`} // Fixed the URL by using template literals
+                  >
+                    <FaEye size={16} />
+                  </Link>
+                  {auction.status === "upcoming" && (
                     <Link
-                      className="text-theme-color hover:text-white hover:bg-theme-color rounded-lg border-2 border-theme-color  px-2 py-[5px] transition-all"
-                      to={`/single-auction-detail/${auction?._id}`}
+                      className="text-blue-300 hover:text-white hover:bg-blue-500 px-2 py-1 rounded-lg transition"
+                      to={`/edit-auction/${auction._id}`} // Fixed the URL by using template literals
                     >
-                      <FaEye size={16} className="inline mt-[-2px]" />
+                      <FaRegEdit size={16} />
                     </Link>
-                    {auction?.status === "upcoming" && (
-                      <>
-                        <Link
-                          className="text-theme-color hover:text-white hover:bg-theme-color rounded-lg border-2 border-theme-color  px-2 py-[5px] transition-all"
-                          to={`/edit-auction/${auction?._id}`}
-                        >
-                          <FaRegEdit size={16} className="inline mt-[-3px]" />
-                        </Link>
-                      </>
-                    )}
-
-                    <button
-                      className="text-color-danger hover:text-white hover:bg-color-danger rounded-lg border-2 border-color-danger  px-[6px] py-[3px] transition-all"
-                      onClick={() => handleDeleteAuction(auction?._id)}
-                    >
-                      <MdDeleteForever
-                        size={20}
-                        className=" inline mt-[-3px]"
-                      />
-                    </button>
-                  </td>
-                </tr>
-              ))
-            )}
+                  )}
+                  <button
+                    className="text-red-400 hover:text-white hover:bg-red-500 px-2 py-1 rounded-lg transition"
+                    onClick={() => handleDeleteAuction(auction._id)}
+                  >
+                    <MdDeleteForever size={20} />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
- { sellerAuction?.auctions?.length ===0 ? <></> :<Pagination totalPosts={sellerAuction?.auctions?.length} postsPerPage={itemsPerPage} 
+      <Pagination
+        totalPosts={mockAuctions.length}
+        postsPerPage={itemsPerPage}
         paginate={paginate}
         currentPage={currentPage}
         nextPage={nextPage}
         prevPage={prevPage}
-        />}
+      />
     </div>
   );
 };

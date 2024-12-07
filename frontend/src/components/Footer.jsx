@@ -10,16 +10,15 @@ const Footer = () => {
   }, [pathname]);
 
   return (
-    <footer className="absolute bottom-0 bg-theme-bg shadow w-full">
+    <footer className="absolute bottom-0 bg2-theme-bg shadow w-full">
       <div className="lg:w-[80%] mx-auto p-4 md:py-8">
         <div className="sm:flex items-center justify-between">
           <Link
             to="/dashboard"
             className="flex items-center mb-4 sm:mb-0 space-x-3 no-underline"
           >
-            <h1 className="text-3xl font-bold text-white font-Roboto">
-              <span className="uppercase text-theme-color">B</span>id
-              <span className="uppercase text-theme-color">F</span>air
+            <h1 className="text-3xl font-bold text-black font-Roboto">
+            <span className=" text-black">BidYourLuck</span>
             </h1>
           </Link>
           <ul className="flex flex-wrap items-center text-sm font-medium text-white list-none">

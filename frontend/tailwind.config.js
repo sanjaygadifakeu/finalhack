@@ -1,6 +1,6 @@
-import { transform } from "framer-motion";
-
-/** @type {import('tailwindcss').Config} */
+/** @type {i
+ * 
+ * port('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -14,27 +14,33 @@ export default {
         mlg: { max: "1200px" },
       },
       colors: {
-        "body-bg": "#FFFFFF", // White for clean background
-        "body-text-color": "#4B4B4B", // Neutral dark gray for text
-        "heading-color": "#1E1E50", // Dark navy blue for headings
-        "theme-color": "#8B0000", // Maroon as primary theme color
+        "telegram-blue": "#0088cc", // Telegram blue
+        "black": "#000000", // Black text for all text
+        "body-bg": "#FFFFFF", // White for background
+        "body-text-color": "#000000", // Black text color for body
+        "heading-color": "#0088cc", // Telegram blue for headings
+        "theme-color": "#0088cc", // Telegram blue for primary theme
         "theme-bg": "#F6F6F6", // Light gray background
         "theme-bg2": "#E9ECEF", // Slightly darker gray
         "theme-bg-light": "#FAFAFA", // Lightest background
         "theme-color-light": "#D4AF37", // Gold accent color
-        "color-white": "#FFFFFF", // White
-        "color-dark": "#1E1E50", // Navy blue
+        "color-white": "#FFFFFF", // White color
+        "color-dark": "#000000", // All text in black
         "color-success": "#10B981", // Green for success
-        "color-primary": "#8B0000", // Maroon
+        "color-primary": "#0088cc", // Telegram blue
         "color-info": "#4B4B4B", // Neutral gray for info
         "color-danger": "#FF4D4F", // Red for errors/danger
         "color-warning": "#FFC107", // Yellow for warnings
         "color-secondary": "#D4AF37", // Gold as secondary
-        hover: "#A50000", // Slightly lighter maroon for hover
-        "border-info-color": "#E0E0E0", // Light gray border
-        "border-white-color": "#FFFFFF", // White border
-        "footer-bg": "#1E1E50", // Navy blue for footer
+        "footer-bg": "#0088cc", // Telegram blue for footer
         "footer-text-color": "#FFFFFF", // White text on footer
+        "border-info-color": "#E0E0E0", // Light gray border
+        "border-white-color": "#000000", // White border
+
+        // Add a custom button color that is green by default
+        "button-bg": "#10B981", // Green button background color
+        "button-text": "#FFFFFF", // White text on buttons
+        "button-hover-bg": "#059669", // Darker green for hover effect
       },
       backgroundImage: {
         "hero-img": "url(./assets/kl-university-banner.jpg)", // Replace with a relevant KL University image
@@ -121,4 +127,8 @@ export default {
       addVariant("link", "& a");
     },
   ],
+  corePlugins: {
+    // Disable hover effects for buttons
+    hover: false,
+  },
 };

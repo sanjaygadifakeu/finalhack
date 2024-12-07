@@ -158,7 +158,7 @@ const UploadItem = () => {
           <div className="grid">
             <label htmlFor="category">Category</label>
             <select
-              className="outline-none h-[50px] bg-theme-bg rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color"
+              className="outline-none text-black h-[50px] bg-theme-bg rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color"
               required
               id="category"
               onChange={(e) =>
@@ -175,7 +175,7 @@ const UploadItem = () => {
                 ))}
             </select>
           </div>
-          <div className="grid  lg:grid-cols-2 gap-4 mlg:grid-cols-1">
+          <div className="grid text-black lg:grid-cols-2 gap-4 mlg:grid-cols-1">
             <div className="grid">
               <label htmlFor="start_time">Start Time</label>
               <input
@@ -202,7 +202,7 @@ const UploadItem = () => {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-4 mlg:grid-cols-1">
+          <div className="grid lg:grid-cols-2 text-black gap-4 mlg:grid-cols-1">
             <div className="grid">
               <label htmlFor="starting_price">Starting Price</label>
 
@@ -219,7 +219,7 @@ const UploadItem = () => {
             <div className="grid ">
               <label htmlFor="category">Area</label>
               <select
-                className="outline-none h-[50px] bg-theme-bg cursor-pointer focus:border-theme-color"
+                className="outline-none text-black h-[50px] bg-theme-bg cursor-pointer focus:border-theme-color"
                 required
                 id="category"
                 onChange={(e) =>
@@ -244,7 +244,7 @@ const UploadItem = () => {
               required
               id="description"
               rows="7"
-              className="outline-none bg-theme-bg rounded-xl px-3 py-4 border border-border-info-color focus:border-theme-color placeholder-body-text-color"
+              className="outline-none text-black bg-theme-bg rounded-xl px-3 py-4 border border-border-info-color focus:border-theme-color placeholder-body-text-color"
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
@@ -253,7 +253,7 @@ const UploadItem = () => {
           </div>
           <button
             type="submit"
-            className="px-3 py-4 rounded-xl text-white cursor-pointer font-bold tracking-wide w-full bg-theme-color hover:bg-color-danger"
+            className="px-3 py-4 rounded-xl text-black cursor-pointer font-bold tracking-wide w-full bg-theme-color hover:bg-color-danger"
           >
             Upload
           </button>

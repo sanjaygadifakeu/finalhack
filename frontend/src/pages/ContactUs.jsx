@@ -38,17 +38,17 @@ toast.success("Email Send Successfully.",{
 
   return (
     <>
-      <div className="text-white flex items-center justify-center flex-col h-[280px] bg-hero-img bg-cover">
-        <h1 className="text-center font-bold text-3xl">Contact Us</h1>
+      <div className="text-black flex items-center justify-center flex-col h-[280px] bg-hero-img bg-cover">
+        <h1 className="text-center text-black font-bold text-3xl">Contact Us</h1>
         <div className="flex gap-2 font-medium pt-2">
           <Link
             to={"/"}
-            className=" no-underline hover:text-theme-color transition-all"
+            className=" no-underline text-black hover:text-theme-color transition-all"
           >
             Home
           </Link>
           <span>/</span>
-          <span className="text-theme-color">Contact Us</span>
+          <span className="text-theme-color text-black ">Contact Us</span>
         </div>
       </div>
       <div className="max-w-[1000px] m-auto px-5 py-20 flex flex-col gap-20">
@@ -58,37 +58,37 @@ toast.success("Email Send Successfully.",{
               <IoLocationOutline size={38} />
             </div>
             <div>
-              <h2 className=" text-2xl font-bold">Address</h2>
+              <h2 className="text-black text-2xl  font-bold">Address</h2>
               <span>Vijayawada </span>
             </div>
           </div>
-          <div className="text-white flex flex-col gap-4 items-center justify-start p-8 rounded-2xl  bg-theme-bg text-center w-full  ">
+          <div className="text-black flex flex-col gap-4 items-center justify-start p-8 rounded-2xl  bg-theme-bg text-center w-full  ">
             <div className="bg-theme-color rounded-full p-3 ">
               <IoCallOutline size={38} />
             </div>
             <div>
-              <h2 className=" text-2xl font-bold">Call Us</h2>
+              <h2 className=" text-2xl text-black font-bold">Call Us</h2>
               <p>+91 9346939241</p>
             </div>
           </div>
-          <div className="text-white flex flex-col gap-4 items-center justify-start p-8 rounded-2xl  bg-theme-bg text-center w-full  ">
+          <div className="text-white flex text-black flex-col gap-4 items-center justify-start p-8 rounded-2xl  bg-theme-bg text-center w-full  ">
             <div className="bg-theme-color rounded-full p-3 ">
               <IoMailOutline size={38} />
             </div>
             <div>
-              <h2 className=" text-2xl font-bold">Email Us</h2>
-              <p>klerp@gmail.com</p>
+              <h2 className=" text-2xl text-black font-bold">Email Us</h2>
+              <p> klerp@gmail.com</p>
             </div>
           </div>
         </div>
-        <div className="px-5 py-10 bg-theme-bg text-slate-300 rounded-2xl">
-          <h2 className=" text-white font-bold text-3xl pb-3 mb-5 ">
+        <div className="px-5 py-10 text-black bg-theme-bg text-slate-300 rounded-2xl">
+          <h2 className=" text-black font-bold text-3xl pb-3 mb-5 ">
             Contact Form
           </h2>
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="flex flex-col gap-4  inputs:outline-none inputs:px-3 inputs:py-4 inputs:rounded-xl inputs:bg-theme-bg2 [&_input[type=submit]]:bg-theme-color [&_input:hover[type=submit]]:bg-color-danger inputs:border inputs:border-border-info-color inputs:placeholder-body-text-color focus:inputs:border-theme-color [&_*]:transition-all"
+            className="flex flex-col gap-4  text-black inputs:outline-none inputs:px-3 inputs:py-4 inputs:rounded-xl inputs:bg-theme-bg2 [&_input[type=submit]]:bg-theme-color [&_input:hover[type=submit]]:bg-color-danger inputs:border inputs:border-border-info-color inputs:placeholder-body-text-color focus:inputs:border-theme-color [&_*]:transition-all"
           >
             <input type="text" name="from_name" placeholder="Full Name" />
             <input
@@ -101,12 +101,12 @@ toast.success("Email Send Successfully.",{
             <textarea
               name="message"
               placeholder="Write your Message"
-              className="outline-none bg-theme-bg2 rounded-xl px-3 py-4 border border-border-info-color focus:border-theme-color placeholder-body-text-color min-h-[200px]"
+              className="outline-none text-black bg-theme-bg2 rounded-xl px-3 py-4 border border-border-info-color focus:border-theme-color placeholder-body-text-color min-h-[200px]"
             />
             <input
               type="submit"
               value="Send Message"
-              className="text-white cursor-pointer font-bold tracking-wide border-none"
+              className="text-black  cursor-pointer font-bold tracking-wide border-none"
             />
           </form>
         </div>

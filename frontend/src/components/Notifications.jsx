@@ -67,7 +67,7 @@ const Notifications = () => {
 
   return (
     <div className="overflow-auto flex flex-col w-full px-7 py-4 bg-theme-bg text-body-text-color rounded-2xl">
-      <h2 className=" text-white font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
+      <h2 className=" text-black font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
         Notifications
       </h2>
       <button

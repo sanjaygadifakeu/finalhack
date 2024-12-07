@@ -49,7 +49,7 @@ const {isLoading,isSuccess , isError,message}=useSelector((state)=>state.auth)
 
   return (
     <div className="flex flex-col w-full px-7 py-4 bg-theme-bg text-body-text-color rounded-2xl ">
-      <h2 className=" text-white font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
+      <h2 className=" text-black font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
         Change Password
       </h2>
       <form
@@ -61,7 +61,7 @@ const {isLoading,isSuccess , isError,message}=useSelector((state)=>state.auth)
           <input
             type="password"
             placeholder="Enter old Password"
-            className="text-white placeholder-body-text-color"
+            className="text-black placeholder-body-text-color"
             name="oldPassword"
             value={formData.oldPassword}
             onChange={(e) =>
@@ -73,7 +73,7 @@ const {isLoading,isSuccess , isError,message}=useSelector((state)=>state.auth)
           <input
             type="password"
             placeholder="Enter new Password"
-            className="text-white placeholder-body-text-color"
+            className="text-black placeholder-body-text-color"
             name="newPassword"
             value={formData.newPassword}
             onChange={(e) =>
@@ -85,7 +85,7 @@ const {isLoading,isSuccess , isError,message}=useSelector((state)=>state.auth)
 
         <button
           type="submit"
-          className="rounded-xl px-4 py-3 text-white cursor-pointer font-bold tracking-wide w-fit bg-color-danger hover:bg-theme-color transition-all"
+          className="rounded-xl px-4 py-3 text-black cursor-pointer font-bold tracking-wide w-fit bg-color-danger hover:bg-theme-color transition-all"
         >
           Change Password
         </button>

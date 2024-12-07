@@ -73,7 +73,7 @@ const AccountSetting = () => {
 
   return (
     <div className=" px-7 py-4 w-full bg-theme-bg text-slate-300 rounded-2xl ">
-      <h2 className=" text-white font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
+      <h2 className=" text-black font-bold text-xl border-b border-border-info-color pb-3 mb-5 ">
         Account Settings
       </h2>
 
@@ -99,7 +99,7 @@ const AccountSetting = () => {
             onChange={(e) => setImgUrl(URL.createObjectURL(e.target.files[0]))}
             ref={imgRef}
           />
-          <div className="grid lg:grid-cols-3 gap-4">
+          <div className="grid text-black lg:grid-cols-3 gap-4">
             <input
               type="text"
               placeholder="FullName "
@@ -122,7 +122,7 @@ const AccountSetting = () => {
             />{" "}
             {/* {select field} */}
             <select
-              className="outline-none bg-theme-bg2 rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color"
+              className="outline-none text-black bg-theme-bg2 rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color"
               value={formData.gender}
               name="gender"
               onChange={(e) =>
@@ -133,7 +133,7 @@ const AccountSetting = () => {
               <option value="female">Female</option>
             </select>
           </div>
-          <div className="grid lg:grid-cols-2 gap-4">
+          <div className="grid text-black lg:grid-cols-2 gap-4">
             <input
               type="text"
               placeholder="Address"
@@ -152,10 +152,12 @@ const AccountSetting = () => {
                 setFormData({ ...formData, city: e.target.value })
               }
             />
-          </div>
+          </div >
           <input
+            className="outline-none text-black bg-theme-bg2 rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color "  
             type="number"
             placeholder="Phone Number"
+            
             value={formData.phone}
             name="phone"
             onChange={(e) =>
@@ -163,7 +165,7 @@ const AccountSetting = () => {
             }
           />
           <select
-            className="outline-none bg-theme-bg2 rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color "
+            className="outline-none text-black bg-theme-bg2 rounded-xl px-3 py-4 cursor-pointer focus:border-theme-color "
             value={formData.userType}
             name="userType"
             onChange={(e) =>
@@ -174,7 +176,7 @@ const AccountSetting = () => {
             <option value="seller">Seller</option>
           </select>
           <textarea
-            className="outline-none bg-theme-bg2 rounded-xl px-3 py-4 border border-border-info-color focus:border-theme-color placeholder-body-text-color"
+            className="outline-none text-black bg-theme-bg2 rounded-xl px-3 py-4 border border-border-info-color focus:border-theme-color placeholder-body-text-color"
             cols="30"
             rows="10"
             placeholder="Description"

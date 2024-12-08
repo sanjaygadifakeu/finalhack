@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
@@ -29,16 +30,18 @@ import ErrorPage from "./pages/ErrorPage";
 import AdminLogin from "./admin/pages/Login";
 import AdminDashboard from "./admin/Admin";
 
-// Additional Components
-import ManageItems from "./components/ManageItems";
-
 // Protected Routes
 import Protected, { PublicRoute, SellerRoutes, AdminRoutes } from "./auth/Protected";
 
 const App = () => {
   const { user } = useSelector((state) => state.auth);
 
-  console.log(user, "...");
+  useEffect(() => {
+    // If there's no user, redirect to login page
+    if (!user) {
+      window.location.href = '/login'; // This will redirect to the login page directly.
+    }
+  }, [user]);
 
   return (
     <>
@@ -48,8 +51,11 @@ const App = () => {
 
         {/* App Routes */}
         <Routes>
+          {/* Redirect root path to login page */}
+          <Route path="/" element={<Navigate to="/login" />} />
+
           {/* General Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -67,7 +73,6 @@ const App = () => {
               element={<ResetNewPassword />}
             />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
 
@@ -80,13 +85,10 @@ const App = () => {
             {/* Seller-Specific Routes */}
             <Route element={<SellerRoutes />}>
               <Route path="/create-auction" element={<UploadItem />} />
-              {/* Uncomment if ManageItems is required */}
-              {/* <Route path="/user-profile/manage-items" element={<ManageItems />} /> */}
             </Route>
           </Route>
 
           {/* Admin-Specific Routes */}
-          {/* Admin routes can be nested with AdminRoutes for more granularity */}
           <Route element={<AdminRoutes />}>
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/*" element={<AdminDashboard />} />

@@ -3,162 +3,21 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="./src/assets/favicon.png" />
+  <link rel="icon" href="./src/assets/favicon.png"  />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BidFair</title>
+  
+  <title>BidYourLuck</title>
 </head>
-
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
   <script type="module">
-    class DummyChatbot {
-      constructor() {
-        this.chatbotVisible = false; // Track chatbot visibility
-        this.responses = {
-          "order status": "To check your order status, please log in to your account and go to 'My Orders'.",
-          "return policy": "You can return your product within 30 days of delivery. Please check the product page for specific details.",
-          "refund": "Refunds are processed within 7-10 business days after the product is received at our warehouse.",
-          "delivery delay": "We're sorry for the delay. You can track your order for updated delivery timelines.",
-          "cancel order": "To cancel an order, go to 'My Orders', select the order, and click on 'Cancel'.",
-          "payment issue": "For payment-related issues, please contact our customer support at 1800-202-9898.",
-          "exchange": "Exchange is available for selected products. Check the product page for eligibility.",
-          default: "I'm sorry, I didn't understand that. Can you please rephrase your query?"
-        };
-        this.initChatbotButton();
-      }
-
-      initChatbotButton() {
-        const chatbotButton = document.createElement('button');
-        chatbotButton.id = 'chatbot-button';
-        chatbotButton.textContent = 'Chat with Us!';
-        chatbotButton.style.position = 'fixed';
-        chatbotButton.style.bottom = '20px';
-        chatbotButton.style.right = '20px';
-        chatbotButton.style.padding = '10px 15px';
-        chatbotButton.style.border = 'none';
-        chatbotButton.style.backgroundColor = '#007bff';
-        chatbotButton.style.color = '#fff';
-        chatbotButton.style.fontSize = '16px';
-        chatbotButton.style.borderRadius = '5px';
-        chatbotButton.style.cursor = 'pointer';
-        chatbotButton.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-        document.body.appendChild(chatbotButton);
-
-        chatbotButton.addEventListener('click', () => {
-          this.toggleChatWindow();
-        });
-      }
-
-      toggleChatWindow() {
-        if (this.chatbotVisible) {
-          this.closeChatWindow();
-        } else {
-          this.openChatWindow();
-        }
-      }
-
-      openChatWindow() {
-        if (!this.chatWindow) {
-          this.createChatWindow();
-        }
-        this.chatWindow.style.display = 'block';
-        this.chatbotVisible = true;
-      }
-
-      closeChatWindow() {
-        if (this.chatWindow) {
-          this.chatWindow.style.display = 'none';
-        }
-        this.chatbotVisible = false;
-      }
-
-      createChatWindow() {
-        this.chatWindow = document.createElement('div');
-        this.chatWindow.id = 'chat-window';
-        this.chatWindow.style.width = '300px';
-        this.chatWindow.style.height = '400px';
-        this.chatWindow.style.border = '1px solid #ccc';
-        this.chatWindow.style.position = 'fixed';
-        this.chatWindow.style.bottom = '70px';
-        this.chatWindow.style.right = '20px';
-        this.chatWindow.style.backgroundColor = '#fff';
-        this.chatWindow.style.padding = '10px';
-        this.chatWindow.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-        this.chatWindow.style.display = 'none'; // Initially hidden
-
-        const chatHeader = document.createElement('div');
-        chatHeader.textContent = 'Bid Your Luck Assistant';
-        chatHeader.style.fontWeight = 'bold';
-        chatHeader.style.marginBottom = '10px';
-
-        const chatBox = document.createElement('div');
-        chatBox.id = 'chat-box';
-        chatBox.style.height = '80%';
-        chatBox.style.overflowY = 'scroll';
-        chatBox.style.marginBottom = '10px';
-        chatBox.style.borderBottom = '1px solid #ccc';
-
-        const userMessageInput = document.createElement('input');
-        userMessageInput.type = 'text';
-        userMessageInput.placeholder = 'Type your query...';
-        userMessageInput.style.width = '100%';
-        userMessageInput.style.padding = '5px';
-
-        userMessageInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            this.handleUserMessage(userMessageInput.value);
-            userMessageInput.value = '';
-          }
-        });
-
-        this.chatWindow.appendChild(chatHeader);
-        this.chatWindow.appendChild(chatBox);
-        this.chatWindow.appendChild(userMessageInput);
-        document.body.appendChild(this.chatWindow);
-      }
-
-      handleUserMessage(message) {
-        if (!message.trim()) return;
-        this.addUserMessage(message);
-
-        const response = this.getResponse(message.toLowerCase());
-        this.addBotMessage(response);
-      }
-
-      getResponse(message) {
-        for (const query in this.responses) {
-          if (message.includes(query)) {
-            return this.responses[query];
-          }
-        }
-        return this.responses.default;
-      }
-
-      addUserMessage(message) {
-        const chatBox = document.getElementById('chat-box');
-        const userMessage = document.createElement('div');
-        userMessage.textContent = `You: ${message}`;
-        userMessage.style.textAlign = 'right';
-        userMessage.style.margin = '5px 0';
-        chatBox.appendChild(userMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-
-      addBotMessage(message) {
-        const chatBox = document.getElementById('chat-box');
-        const botMessage = document.createElement('div');
-        botMessage.textContent = `Bot: ${message}`;
-        botMessage.style.margin = '5px 0';
-        botMessage.style.color = '#555';
-        chatBox.appendChild(botMessage);
-        chatBox.scrollTop = chatBox.scrollHeight;
-      }
-    }
-
-    // Initialize the chatbot
-    new DummyChatbot();
-  </script>
+    import Chatbot from "https://cdn.jsdelivr.net/gh/Yasir-Mukthar/FlowiseChat/dist/web.js"
+    Chatbot.init({
+        chatflowid: "99c7eb85-e4c7-48c1-84cf-21ce4cacc0e3",
+        apiHost: "http://localhost:3000",
+    })
+</script>
 </body>
 
 </html>
